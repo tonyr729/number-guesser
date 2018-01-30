@@ -1,0 +1,157 @@
+* {
+  font-family: 'Open Sans', sans-serif;
+  margin:0;
+}
+body {
+  margin:0px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+.container {
+  text-align: center;
+}
+.container * {
+  box-sizing: border-box;
+}
+header {
+  background: #404041;
+  height: 130px;
+  text-align: center;
+}
+.header__h1 {
+  color: #ED458B;
+  font-weight: bold;
+  font-size: 72px;
+  padding-top: 10px;
+  margin: 0px;
+}
+.header__h1--light {
+  color: #E6E7E8;
+  font-weight:300;
+}
+.hidden__img {
+  position: absolute;
+  margin:93px -465px;
+}
+.div__min-max{
+  position: relative;
+  width:866px;
+  height: 200px;
+  margin:-105px auto;
+}
+.p__min {
+  position: absolute;
+  left:0;
+  color: #EB008B;
+  display: block;
+  font-size: 4em;
+  margin: 190px 15px;
+}
+.p__max {
+  position: absolute;
+  right:0;
+  color: #EB008B;
+  display: block;
+  font-size: 4em;
+  margin: 190px 25px;
+}
+form {
+  align-content: center;
+}
+.form__div-input{
+  height:40px;
+  position:relative;
+}
+ul {
+  padding:0px;
+ 
+}
+li {
+  display: inline;
+  margin:0;
+}
+.li__input-left,
+.form__input-min,
+.li__input-right,
+.form__input-max {
+  width:160px;
+}
+.li__input-main {
+  width:560px;
+  margin:0px 10px 0px 10px;
+}
+input {
+  position: relative;
+  margin: 65px auto 0px;
+  width: 560px;
+  padding: 5px 10px;
+  font-size: 1.5em;
+
+}
+.invisible (
+  visibility: hidden;
+  )
+p {
+  margin-top: 12px;
+  display: inline-block;
+  font-size: 25px;
+  color: #404041;
+}
+.p__warning {
+  position: absolute;
+  color: #ff0000;
+  display: block;
+  font-size: 18px;
+  margin: 205px 155px;
+}
+.p__guess {
+  margin-top: 65px;
+}
+button {
+  width: 260px;
+  height: 58px;
+  font-size: 2em;
+  display: inline-block;
+  border: #929497;
+  border-radius: 35px;
+  background: #929497;
+  color: #FFF;
+  letter-spacing: .1em;
+}
+
+button:hover {
+  background: #EB008B;
+}
+
+button:disabled {
+  background: #D0D2D3;
+}
+.form__div-button {
+  display: block;
+  width: 560px;
+  position: relative;
+  margin: 150px auto 0;
+}
+
+#button__guess {
+  left:0px;
+}
+#button__clear {
+  right:0px;
+}
+.p__big-text {
+  color: #EB008B;
+  display: block;
+  font-size: 14em;
+  margin: -35px 0px 40px 0px;
+}
+.p__result {
+  display: block;
+  margin: -45px auto 90px;
+}
+.button__reset {
+  width:560px;
+  height: 48px;
+  font-size: 1.5em;
+}
+
