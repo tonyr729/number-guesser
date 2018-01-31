@@ -11,23 +11,23 @@
 //Variable Range---------------------------------------------------------------------------------------------------! Not working
 // formInput.addEventListener('focus', getRandomArbitrary, false);
 
-// function getRandomArbitrary() {
-//   console.log(formInputMin.length);
-//   console.log(formInputMax.length);
-//   if (formInputMin.value.length > 0 && formInputMax.value.length > 0) {
-//     console.log('success!')
-//     randomNumber=Math.floor(Math.random() * (minNumber - maxNumber) + minNumber);
-//   } else {
-//     randomNumber=randomNumber;
-//   }
-// }
+function getRandomArbitrary() {
+  console.log(formInputMin.length);
+  console.log(formInputMax.length);
+  if (formInputMin.value.length > 0 && formInputMax.value.length > 0) {
+    console.log('success!')
+    randomNumber=Math.floor(Math.random() * (minNumber - maxNumber) + minNumber);
+  } else {
+    randomNumber=randomNumber;
+  }
+}
 
 
 
 
 
 //Global Variables Non-repeat
-var randomNumber = Math.floor(Math.random() * 99)+1
+var randomNumber = Math.floor(Math.random() * 100)+1
 var minNumber = 1
 var maxNumber = 100
 var formInput = document.querySelector('#form__input')
@@ -47,7 +47,7 @@ var pCongrats = document.querySelector('#form__p-congrats')
 //Designates userNumber 
 formInput.addEventListener('input',changeNum,false);
 function changeNum() {
-  userNumber=formInput.value;
+  userNumber=parseInt(formInput.value);
 }
 
 //Hide Advanced Features
@@ -123,13 +123,25 @@ function reset() {
 formInputMin.addEventListener('blur',changeRangeMin,false);
 
 function changeRangeMin() {
-  minNumber=this.value;
+  minNumber=parseInt(this.value);
 }
 
 formInputMax.addEventListener('blur',changeRangeMax,false);
 
 function changeRangeMax() {
-  maxNumber=this.value;
+  maxNumber=parseInt(this.value);
+}
+formInput.addEventListener('focus', getRandomArbitrary, false);
+
+function getRandomArbitrary() {
+  console.log(formInputMin.length);
+  console.log(formInputMax.length);
+  if (formInputMin.value.length > 0 && formInputMax.value.length > 0) {
+    console.log('success!')
+    randomNumber=Math.floor(Math.random() * (maxNumber - minNumber) + minNumber);
+  } else {
+    randomNumber=randomNumber;
+  }
 }
 
 // User# === Random# 
