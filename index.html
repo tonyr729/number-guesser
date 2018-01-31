@@ -11,23 +11,23 @@
       <h1 class='header__h1'>Number <span class='header__h1--light'>Guesser</span></h1>
     </header>
     <section>
-      <img src="newfields.png" alt="An image explaining you now have new fields if you win" class="hidden__img" id="hidden__img">
       <div class="div__min-max">
         <p class='p__warning' id='p__warning'></p>
       </div>
       <form autocomplete='off'>
         <div class='form__div-input'>
-        <ul>
-          <li class='li__input-left'>
-            <label class='input__label-min' id='input__label-min'><input type='number' class='form__input-min' id='form__input-min' value='' placeholder='min'/></label>
-          </li>
-          <li class='li__input-main'>
-            <input type='number' class='form__input' id='form__input' value='' placeholder='Enter your guess' />
-          </li>
-          <li class='li__input-right'>
-            <label class='input__label-max' id='input__label-max'><input type='number' class='form__input-max' id='form__input-max' value='' placeholder='max'/></label>
-          </li>
-        </ul>
+          <p class='form__p-congrats' id='form__p-congrats'></p>
+          <ul>
+            <li class='li__input-left'>
+              <label class='input__label-min' id='input__label-min'><input type='number' class='form__input-min' id='form__input-min' value='' placeholder='min'/></label>
+            </li>
+            <li class='li__input-main'>
+              <input type='number' class='form__input' id='form__input' value='' placeholder='Enter your guess' />
+            </li>
+            <li class='li__input-right'>
+              <label class='input__label-max' id='input__label-max'><input type='number' class='form__input-max' id='form__input-max' value='' placeholder='max'/></label>
+            </li>
+          </ul>
         </div>
         <div class='form__div-button'>
           <button class='div__button' id='button__guess' disabled>Guess</button> 
