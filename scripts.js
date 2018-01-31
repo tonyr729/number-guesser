@@ -2,31 +2,9 @@
 //* TODO
 //*=======================================
 //* refactor
-//* variable math.random 
 //* incrimental range -10 +10 on every win
 //* aria functionality
 
-
-
-//Variable Range---------------------------------------------------------------------------------------------------! Not working
-// formInput.addEventListener('focus', getRandomArbitrary, false);
-
-function getRandomArbitrary() {
-  console.log(formInputMin.length);
-  console.log(formInputMax.length);
-  if (formInputMin.value.length > 0 && formInputMax.value.length > 0) {
-    console.log('success!')
-    randomNumber=Math.floor(Math.random() * (minNumber - maxNumber) + minNumber);
-  } else {
-    randomNumber=randomNumber;
-  }
-}
-
-
-
-
-
-//Global Variables Non-repeat
 var randomNumber = Math.floor(Math.random() * 100)+1
 var minNumber = 1
 var maxNumber = 100
@@ -43,24 +21,35 @@ var bigText = document.querySelector('#big__text')
 var pWarning = document.querySelector('#p__warning')
 var pTooHighTooLow = document.querySelector('#p__high')
 var pCongrats = document.querySelector('#form__p-congrats')
+var buttonChangeMin = document.querySelector('#button__change-min')
+var buttonChangeMax = document.querySelector('#button__change-max')
+var userNumber = parseInt(formInput.value);
 
-//Designates userNumber 
-formInput.addEventListener('input',changeNum,false);
-function changeNum() {
-  userNumber=parseInt(formInput.value);
-}
+formInput.addEventListener('keyup', formReset, false);
+formInput.addEventListener('click', formReset, false);
+buttonGuess.addEventListener('click', displayNum);
+buttonClear.addEventListener('click', clear);
+buttonReset.addEventListener('click', reset);
+formInputMin.addEventListener('blur',changeRangeMin,false);
+buttonChangeMin.addEventListener('click', newRandomNumber, false);
+buttonChangeMax.addEventListener('click', newRandomNumber, false);
+formInputMax.addEventListener('blur',changeRangeMax,false);
+formInput.addEventListener('keyup', errorReset, false);
+formInput.addEventListener('keypress', preventUnwantedKeys);
+
 
 //Hide Advanced Features
 hideAdvanced();
 
 function hideAdvanced() {
-  inputLabelMin.style.display='none';
-  inputLabelMax.style.display='none';
+  inputLabelMin.style.display = 'none';
+  inputLabelMax.style.display = 'none';
+  buttonChangeMin.style.display = 'none';
+  buttonChangeMax.style.display = 'none';
+
 }
 
 //Button Disable
-formInput.addEventListener('keyup', formReset, false);
-formInput.addEventListener('click', formReset, false);
 
 function formReset() {
   if(formInput.value.length > 0) { 
@@ -73,8 +62,9 @@ function formReset() {
     resetAll();
   }
 }
+
 function resetAll() {
-  if(userNumber.length >0) {
+  if(bigText.innerText != '') {
     buttonReset.disabled = false;
   } else {
     buttonReset.disabled = true;
@@ -82,74 +72,70 @@ function resetAll() {
 }
 
 //Prevent the E key
-formInput.addEventListener('keypress', function (evt) {
-  if (evt.which != 8 && evt.which != 0 && evt.which < 48 || evt.which > 57) {
+
+function preventUnwantedKeys(evt) {
+  if (evt.keyCode != 8 && evt.keyCode != 45 && evt.keyCode != 0 && evt.keyCode < 48 || evt.keyCode > 57) {
     evt.preventDefault();
+    pWarning.innerText = 'That is not a number';
   }
-});
+}
 
 //Guess Button - Top text replace - Number insert
-buttonGuess.addEventListener('click', display_num);
 
-function display_num() {
+function displayNum() {
   event.preventDefault();
   checkNum();
   formReset();
 }
 
 //Cear Button
-buttonClear.addEventListener('click', clear);
 
 function clear() {
   event.preventDefault();
   formReset();
-  formInput.value= '';
+  formInput.value = '';
   formReset();
 }
 
 //Reset Button
-buttonReset.addEventListener('click', reset);
 
 function reset() {
-  pGuess.innerHTML='Guess a number between1 and 100';
-  bigText.innerHTML='';
-  pTooHighTooLow.innerHTML='';
+  pGuess.innerHTML = 'Guess a number between1 and 100';
+  bigText.innerHTML = '';
+  pTooHighTooLow.innerHTML = '';
   buttonReset.setAttribute('disabled', true);
   hideAdvanced();
   formReset();
 }
 
 //CHANGE RANGE
-formInputMin.addEventListener('blur',changeRangeMin,false);
 
 function changeRangeMin() {
   minNumber=parseInt(this.value);
 }
 
-formInputMax.addEventListener('blur',changeRangeMax,false);
 
 function changeRangeMax() {
   maxNumber=parseInt(this.value);
 }
-formInput.addEventListener('focus', getRandomArbitrary, false);
 
-function getRandomArbitrary() {
-  console.log(formInputMin.length);
-  console.log(formInputMax.length);
+function newRandomNumber() {
+  event.preventDefault();
   if (formInputMin.value.length > 0 && formInputMax.value.length > 0) {
     console.log('success!')
-    randomNumber=Math.floor(Math.random() * (maxNumber - minNumber) + minNumber);
+    randomNumber = Math.floor(Math.random() * (maxNumber - minNumber) + minNumber);
   } else {
-    randomNumber=randomNumber;
+    randomNumber = randomNumber;
   }
 }
 
 // User# === Random# 
 function displayResult() {
-  pGuess.innerHTML='Your last guess was';
-  bigText.innerHTML=parseInt(formInput.value);
+  pGuess.innerHTML = 'Your last guess was';
+  bigText.innerHTML = parseInt(formInput.value);
   formInput.value = '';
 }
+
 function checkNum() {
   console.log(randomNumber);
   var userNumber = parseInt(formInput.value);
@@ -159,14 +145,20 @@ function checkNum() {
     formInput.value = '';
   } else if (randomNumber === userNumber) {
     randomNumber = Math.floor(Math.random() * 99)+1;
-    pTooHighTooLow.innerHTML='Boom!';
-    inputLabelMin.style.display= '';
-    inputLabelMax.style.display= '';
-    pCongrats.innerHTML= 'Congrats! Pick your own range.';
+    showExtra();
     displayResult();
   } else{
     highLow();
   }
+}
+
+function showExtra() {
+    buttonChangeMin.style.display = '';
+    buttonChangeMax.style.display = '';
+    pTooHighTooLow.innerHTML ='Boom!';
+    inputLabelMin.style.display = '';
+    inputLabelMax.style.display = '';
+    pCongrats.innerHTML= 'Congrats! Pick your own range.';
 }
 
 //User guess too high/too low
@@ -184,7 +176,6 @@ function highLow() {
 }
 
 //Error Reset
-formInput.addEventListener('keyup', errorReset, false);
 
 function errorReset() {
   pWarning.innerHTML='';

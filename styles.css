@@ -2,26 +2,31 @@
   margin:0;
   font-family: 'Open Sans', sans-serif;
 }
+
 p {
   display: inline-block;
   margin-top: 12px;
   color: #404041;
   font-size: 25px;
 }
+
 body {
   margin:0px;
   min-width: 910px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
 }
+
 header {
   height: 130px;
   text-align: center;
   background: #404041;
 }
+
 form {
   align-content: center;
 }
+
 input {
   position: relative;
   margin: 65px auto 0px;
@@ -29,6 +34,7 @@ input {
   width: 560px;
   font-size: 1.5em;
 }
+
 button {
   display: inline-block;
   height: 58px;
@@ -40,61 +46,104 @@ button {
   font-size: 2em;
   letter-spacing: .1em;
 }
+
 button:hover {
   background: #EB008B;
 }
+
 button:disabled {
   background: #D0D2D3;
 }
+
 ul {
   padding:0px;
 }
+
 li {
   display: inline;
   margin:0;
 }
+
 #button__guess {
+  position: absolute;
   left:0px;
+
 }
+
 #button__clear {
+  position:absolute;
   right:0px;
 }
+
+#button__change-min {
+  position: absolute;
+  top: 85px;
+  left:0;
+  width:160px;
+  height:48px;
+  font-size:1em;
+}
+
+#button__change-max {
+  position: absolute;
+  top:85px;
+  right:0;
+  width:160px;
+  height:48px;
+  font-size:1em;
+}
+
 .button__reset {
   width:560px;
   height: 48px;
   font-size: 1.5em;
 }
+
 .container * {
   box-sizing: border-box;
 }
+
 .container {
   text-align: center;
 }
+
 .div__min-max{
   position: relative;
   margin:-105px auto;
   height: 200px;
   width:866px;
 }
+
 .form__div-input{
   position:relative;
   height:40px;
 }
+
 .form__p-congrats {
   position: absolute;
   margin: 20px -170px;
   color:#ED458B;
 }
+
 .form__div-button {
   position: relative;
   display: block;
   margin: 150px auto 0;
   width: 560px;
 }
+
+.form__div-change {
+  position: relative;
+  display: block;
+  margin:0 auto;
+  width: 910px;
+}
+
 .form__input-min,
 .form__input-max {
   border:solid #EB008b;
 }
+
 .header__h1 {
   margin: 0px;
   padding-top: 10px;
@@ -102,10 +151,12 @@ li {
   font-size: 72px;
   font-weight: bold;
 }
+
 .header__h1--light {
   color: #E6E7E8;
   font-weight:300;
 }
+
 
 .li__input-left,
 .form__input-min,
@@ -113,10 +164,12 @@ li {
 .form__input-max {
   width:160px;
 }
+
 .li__input-main {
   margin:0px 10px 0px 10px;
   width:560px;
 }
+
 .p__min {
   position: absolute;
   display: block;
@@ -125,6 +178,7 @@ li {
   color: #EB008B;
   font-size: 4em;
 }
+
 .p__max {
   position: absolute;
   display: block;
@@ -133,6 +187,7 @@ li {
   color: #EB008B;
   font-size: 4em;
 }
+
 .p__warning {
   position: absolute;
   display: block;
@@ -140,15 +195,18 @@ li {
   color: #ff0000;
   font-size: 18px;
 }
+
 .p__guess {
   margin-top: 65px;
 }
+
 .p__big-text {
   display: block;
   margin: -35px 0px 40px 0px;
   color: #EB008B;
   font-size: 14em;
 }
+
 .p__result {
   display: block;
   margin: -45px auto 90px;
