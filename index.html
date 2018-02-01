@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
 <head>
   <link href='styles.css' rel='stylesheet'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,700' rel='stylesheet'>
   <title>Number Guesser</title>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta name="description" content="A game where you try and guess a number!">
 </head>
 <body>
   <main class='container'>
     <header>
+      <div class='header__div-p'>
+       <p class='p__increment-min' id='p__increment-min'></p>
+       <p class='p__increment-max' id='p__increment-max'></p>
+      </div>
       <h1 class='header__h1'>Number <span class='header__h1--light'>Guesser</span></h1>
     </header>
     <section>
@@ -16,8 +22,8 @@
       </div>
       <form autocomplete='off'>
         <div class='form__div-input'>
-          <p class='p__increment-min' id='p__increment-min'></p>
-          <p class='form__p-congrats' id='form__p-congrats'></p><p class='p__increment-max' id='p__increment-max'></p>
+         
+          <p class='form__p-congrats' id='form__p-congrats'></p>
           <ul>
             <li class='li__input-left'>
               <label class='input__label-min' id='input__label-min'><input type='number' class='form__input-min' id='form__input-min' value='' placeholder='min'/></label>
