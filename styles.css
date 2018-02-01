@@ -145,6 +145,12 @@ li {
   color:#ED458B;
   font-weight: bold;
 }
+.header__div-p {
+  position: relative;
+  display: block;
+  margin:0 auto;
+  width:755px;
+}
 
 .header__h1 {
   margin: 0px;
@@ -176,8 +182,8 @@ li {
   position: absolute;
   display: block;
   margin: 0;
-  left: 660px;
-  top: 48px;
+  left: 0;
+  top: 168px;
   color: #EB008B;
   font-size: 57px;
 }
@@ -186,8 +192,8 @@ li {
   position: absolute;
   display: block;
   margin: 0;
-  right: 643px;
-  top: 48px;
+  right: 0px;
+  top: 168px;
   color: #EB008B;
   font-size: 57px;
 }
