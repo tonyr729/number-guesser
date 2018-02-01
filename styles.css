@@ -75,20 +75,20 @@ li {
   right:0px;
 }
 
-#button__change-min {
+#button__increment {
   position: absolute;
   top: 85px;
   left:0;
-  width:160px;
+  width:260px;
   height:48px;
   font-size:1em;
 }
 
-#button__change-max {
+#button__user-range {
   position: absolute;
   top:85px;
   right:0;
-  width:160px;
+  width:260px;
   height:48px;
   font-size:1em;
 }
@@ -119,11 +119,6 @@ li {
   height:40px;
 }
 
-.form__p-congrats {
-  position: absolute;
-  margin: 20px -170px;
-  color:#ED458B;
-}
 
 .form__div-button {
   position: relative;
@@ -136,12 +131,19 @@ li {
   position: relative;
   display: block;
   margin:0 auto;
-  width: 910px;
+  width: 560px;
 }
 
 .form__input-min,
 .form__input-max {
   border:solid #EB008b;
+}
+
+.form__p-congrats {
+  position: absolute;
+  margin: 20px -90px;
+  color:#ED458B;
+  font-weight: bold;
 }
 
 .header__h1 {
@@ -170,22 +172,24 @@ li {
   width:560px;
 }
 
-.p__min {
+.p__increment-min {
   position: absolute;
   display: block;
-  margin: 190px 15px;
-  left:0;
+  margin: 0;
+  left: 660px;
+  top: 48px;
   color: #EB008B;
-  font-size: 4em;
+  font-size: 57px;
 }
 
-.p__max {
+.p__increment-max {
   position: absolute;
   display: block;
-  margin: 190px 25px;
-  right:0;
+  margin: 0;
+  right: 643px;
+  top: 48px;
   color: #EB008B;
-  font-size: 4em;
+  font-size: 57px;
 }
 
 .p__warning {
@@ -197,7 +201,7 @@ li {
 }
 
 .p__guess {
-  margin-top: 65px;
+  margin-top: 130px;
 }
 
 .p__big-text {

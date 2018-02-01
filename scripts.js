@@ -1,10 +1,3 @@
-//*=======================================
-//* TODO
-//*=======================================
-//* refactor
-//* incrimental range -10 +10 on every win
-//* aria functionality
-
 var randomNumber = Math.floor(Math.random() * 100)+1
 var minNumber = 1
 var maxNumber = 100
@@ -16,43 +9,51 @@ var inputLabelMax = document.querySelector('#input__label-max')
 var buttonClear = document.querySelector('#button__clear')
 var buttonReset = document.querySelector('#button__reset')
 var buttonGuess = document.querySelector('#button__guess')
-var pGuess = document.querySelector('#p__guess')
+var guessText = document.querySelector('#p__guess')
 var bigText = document.querySelector('#big__text')
-var pWarning = document.querySelector('#p__warning')
-var pTooHighTooLow = document.querySelector('#p__high')
-var pCongrats = document.querySelector('#form__p-congrats')
-var buttonChangeMin = document.querySelector('#button__change-min')
-var buttonChangeMax = document.querySelector('#button__change-max')
-var userNumber = parseInt(formInput.value);
+var warningText = document.querySelector('#p__warning')
+var tooHighTooLowText = document.querySelector('#p__high')
+var congratsText = document.querySelector('#form__p-congrats')
+var buttonUserRange = document.querySelector('#button__user-range')
+var buttonIncrement = document.querySelector('#button__increment')
+var incrementMinText = document.querySelector('#p__increment-min')
+var incrementMaxText = document.querySelector('#p__increment-max')
+var userNumber
 
-formInput.addEventListener('keyup', formReset, false);
-formInput.addEventListener('click', formReset, false);
-buttonGuess.addEventListener('click', displayNum);
+
+
+formInput.addEventListener('keyup', disableAll, false);
+formInput.addEventListener('click', disableAll, false);
+buttonGuess.addEventListener('click', gameStart);
 buttonClear.addEventListener('click', clear);
 buttonReset.addEventListener('click', reset);
+buttonUserRange.addEventListener('click', userRange, false);
+// buttonIncrement.addEventListener('click', incrementRange, false);
 formInputMin.addEventListener('blur',changeRangeMin,false);
-buttonChangeMin.addEventListener('click', newRandomNumber, false);
-buttonChangeMax.addEventListener('click', newRandomNumber, false);
 formInputMax.addEventListener('blur',changeRangeMax,false);
 formInput.addEventListener('keyup', errorReset, false);
-formInput.addEventListener('keypress', preventUnwantedKeys);
+formInput.addEventListener('keypress', preventUnwantedKeys, false);
+buttonIncrement.addEventListener('click', incrementRange, false);
 
+hideAdvancedFeatures();
 
-//Hide Advanced Features
-hideAdvanced();
-
-function hideAdvanced() {
+function hideAdvancedFeatures() {
   inputLabelMin.style.display = 'none';
   inputLabelMax.style.display = 'none';
-  buttonChangeMin.style.display = 'none';
-  buttonChangeMax.style.display = 'none';
+  buttonUserRange.style.display = 'none';
+  buttonIncrement.style.display = 'none';
+  congratsText.innerText = '';
 
 }
 
-//Button Disable
+function gameStart() {
+  event.preventDefault();
+  checkNum();
+  disableAll();
+}
 
-function formReset() {
-  if(formInput.value.length > 0) { 
+function disableAll() {
+  if (formInput.value.length > 0) { 
     buttonClear.disabled = false;
     buttonReset.disabled = false;
     buttonGuess.disabled = false;
@@ -64,74 +65,82 @@ function formReset() {
 }
 
 function resetAll() {
-  if(bigText.innerText != '') {
+  if (bigText.innerText != '') {
     buttonReset.disabled = false;
   } else {
     buttonReset.disabled = true;
   }
 }
 
-//Prevent the E key
-
-function preventUnwantedKeys(evt) {
-  if (evt.keyCode != 8 && evt.keyCode != 45 && evt.keyCode != 0 && evt.keyCode < 48 || evt.keyCode > 57) {
-    evt.preventDefault();
-    pWarning.innerText = 'That is not a number';
+function preventUnwantedKeys(event) {
+  if (event.keyCode != 8 && event.keyCode != 45 && event.keyCode != 0 && event.keyCode < 48 || event.keyCode > 57) {
+    event.preventDefault();
+    warningText.innerText = 'That is not a number';
   }
 }
 
-//Guess Button - Top text replace - Number insert
-
-function displayNum() {
-  event.preventDefault();
-  checkNum();
-  formReset();
-}
-
-//Cear Button
 
 function clear() {
   event.preventDefault();
-  formReset();
+  disableAll();
   formInput.value = '';
-  formReset();
+  disableAll();
 }
-
-//Reset Button
 
 function reset() {
-  pGuess.innerHTML = 'Guess a number between1 and 100';
+  guessText.innerHTML = 'Guess a number between1 and 100';
   bigText.innerHTML = '';
-  pTooHighTooLow.innerHTML = '';
+  tooHighTooLowText.innerHTML = '';
   buttonReset.setAttribute('disabled', true);
-  hideAdvanced();
-  formReset();
+  hideAdvancedFeatures();
+  disableAll();
 }
 
-//CHANGE RANGE
-
 function changeRangeMin() {
-  minNumber=parseInt(this.value);
+  minNumber = parseInt(this.value);
+  newRandomNumber();
 }
 
 
 function changeRangeMax() {
-  maxNumber=parseInt(this.value);
+  maxNumber = parseInt(this.value);
+  newRandomNumber();
 }
 
 function newRandomNumber() {
-  event.preventDefault();
-  if (formInputMin.value.length > 0 && formInputMax.value.length > 0) {
-    console.log('success!')
+if (formInputMin.value.length > 0 && formInputMax.value.length > 0) {
     randomNumber = Math.floor(Math.random() * (maxNumber - minNumber) + minNumber);
-  } else {
-    randomNumber = randomNumber;
+    formInputMin.value = '';
+    formInputMax.value = '';
+    hideAdvancedFeatures();
+    displayNewRange();
   }
 }
 
-// User# === Random# 
+function userRange() {
+  event.preventDefault();
+  inputLabelMin.style.display = '';
+  inputLabelMax.style.display = '';
+  incrementMinText.innerText = ' ';
+  incrementMinText.innerText = ' ';
+  } 
+
+function incrementRange() {
+  event.preventDefault();
+  maxNumber = (maxNumber + 10);
+  minNumber = (minNumber - 10);
+  randomNumber = Math.floor(Math.random() * (maxNumber - minNumber) + minNumber);
+  displayNewRange();
+  hideAdvancedFeatures();
+}
+
+function displayNewRange() {
+  incrementMinText.innerText = minNumber;
+  incrementMaxText.innerText = maxNumber;
+}
+
 function displayResult() {
-  pGuess.innerHTML = 'Your last guess was';
+  guessText.innerHTML = 'Your last guess was';
   bigText.innerHTML = parseInt(formInput.value);
   formInput.value = '';
 }
@@ -139,44 +148,39 @@ function displayResult() {
 function checkNum() {
   console.log(randomNumber);
   var userNumber = parseInt(formInput.value);
-  var outOfRangeMsg =pWarning;
+  var outOfRangeMsg = warningText;
   if (userNumber > maxNumber || userNumber < minNumber) {
     outOfRangeMsg.textContent = '* That number is outside the designated range';
     formInput.value = '';
   } else if (randomNumber === userNumber) {
     randomNumber = Math.floor(Math.random() * 99)+1;
-    showExtra();
+    showExtraOptions();
     displayResult();
-  } else{
+  } else {
     highLow();
   }
 }
 
-function showExtra() {
-    buttonChangeMin.style.display = '';
-    buttonChangeMax.style.display = '';
-    pTooHighTooLow.innerHTML ='Boom!';
-    inputLabelMin.style.display = '';
-    inputLabelMax.style.display = '';
-    pCongrats.innerHTML= 'Congrats! Pick your own range.';
+function showExtraOptions() {
+  buttonIncrement.style.display = '';
+  buttonUserRange.style.display = '';
+  tooHighTooLowText.innerHTML ='Boom!';
+  congratsText.innerHTML= 'You guessed it!';
 }
 
-//User guess too high/too low
 function highLow() {
   var userNumber = parseInt(formInput.value);
   if (randomNumber > userNumber) {
-    pTooHighTooLow.innerHTML='That is too low';
+    tooHighTooLowText.innerHTML='That is too low';
     displayResult();
     formInput.value = '';
   } else if (randomNumber < userNumber) {
-    pTooHighTooLow.innerHTML='That is too high';
+    tooHighTooLowText.innerHTML='That is too high';
     displayResult();
     formInput.value = '';
   }
 }
 
-//Error Reset
-
 function errorReset() {
-  pWarning.innerHTML='';
+  warningText.innerHTML='';
 }
